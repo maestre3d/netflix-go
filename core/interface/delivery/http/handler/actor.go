@@ -12,7 +12,7 @@ import (
 type ActorHandler struct {
 }
 
-// NewActorHandler Get a new userhandler instance
+// NewActorHandler Get a new user handler instance
 func NewActorHandler() *ActorHandler {
 	return &ActorHandler{}
 }

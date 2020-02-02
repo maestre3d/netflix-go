@@ -1,10 +1,11 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
-	"github.com/maestre3d/netflix-go/core/config"
-	delivery "github.com/maestre3d/netflix-go/delivery/http"
+	"github.com/maestre3d/netflix-go/core/common/config"
+	delivery "github.com/maestre3d/netflix-go/core/interface/delivery/http"
 )
 
 func main() {
@@ -15,6 +16,9 @@ func main() {
 		Handler: mux,
 	}
 
-	srv.ListenAndServe()
+	err := srv.ListenAndServe()
+	if err != nil {
+		log.Fatalf("Error creating HTTP Server\nDetail: %v", err)
+	}
 
 }

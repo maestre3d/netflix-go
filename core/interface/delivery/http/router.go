@@ -8,8 +8,8 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
-	"github.com/maestre3d/netflix-go/core/config"
-	"github.com/maestre3d/netflix-go/delivery/http/handler"
+	"github.com/maestre3d/netflix-go/core/common/config"
+	"github.com/maestre3d/netflix-go/core/interface/delivery/http/handler"
 )
 
 // NewRouter Create new HTTP Router
@@ -30,7 +30,7 @@ func NewRouter() *chi.Mux {
 func initConfiguration(mux *chi.Mux) {
 	// Basic CORS
 	// for more ideas, see: https://developer.github.com/v3/#cross-origin-resource-sharing
-	cors := cors.New(cors.Options{
+	corsConfig := cors.New(cors.Options{
 		// AllowedOrigins: []string{"https://foo.com"}, // Use this to allow specific origin hosts
 		AllowedOrigins: []string{"*"},
 		// AllowOriginFunc:  func(r *http.Request, origin string) bool { return true },
@@ -42,7 +42,7 @@ func initConfiguration(mux *chi.Mux) {
 	})
 
 	mux.Use(
-		cors.Handler, //	Use user-defined CORS policies
+		corsConfig.Handler, //	Use user-defined CORS policies
 
 		middleware.RequestID,               //	Set an ID to every request
 		middleware.Logger,                  //	Log API request
